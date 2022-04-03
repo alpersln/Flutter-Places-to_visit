@@ -6,7 +6,11 @@ class Place {
   final PlaceLocation location;
   final File image;
 
-  Place(this.id, this.title, this.location, this.image);
+  Place(
+      {required this.id,
+      required this.title,
+      required this.location,
+      required this.image});
 }
 
 class PlaceLocation {

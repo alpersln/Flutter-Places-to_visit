@@ -1,15 +1,47 @@
 import 'dart:io';
-
+import 'package:path_provider/path_provider.dart' as system_paths;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:places_to_visit/screens/add_place_screen/add_place_screen.dart';
 
 class ImageInput extends StatefulWidget {
+  final Function onSelectImage;
+
+  ImageInput({Key? key, required this.onSelectImage}) : super(key: key);
+
   @override
   _ImageInputState createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
   File? _storedImage;
+
+  Future<void> _takepicture() async {
+    final picker = ImagePicker();
+    final imageFile =
+        await picker.pickImage(source: ImageSource.camera, maxWidth: 600);
+    // print("${imageFile.toString()}");   //instance of XFile
+    if (imageFile == null) {
+      return;
+    }
+    setState(() {
+      _storedImage = File(imageFile.path);
+    });
+
+    final appDirectory = await system_paths
+        .getApplicationDocumentsDirectory(); // get the default directory of this
+    // print("${appDirectory}");                           //    a/b/c
+
+    final fileName = path.basename(imageFile.path);
+    //  print("${fileName}");                               //    /d.jpg
+
+    final savedImage = await File(imageFile.path).copy(
+        "${appDirectory.path}/$fileName"); //get the filename stored in temporary storage along with path and copy to savedImage
+    print("${savedImage}"); //    a/b/c/d.jpg
+
+    widget.onSelectImage(savedImage);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +59,23 @@ class _ImageInputState extends State<ImageInput> {
                   fit: BoxFit.cover,
                   width: double.infinity,
                 )
-              : Text(
+              : const Text(
                   'No Image Taken',
                   textAlign: TextAlign.center,
                 ),
           alignment: Alignment.center,
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Expanded(
           child: TextButton.icon(
-            icon: Icon(Icons.camera),
-            label: Text('Take Picture'),
-            onPressed: () {},
+            style: TextButton.styleFrom(
+              primary: Theme.of(context).primaryColor,
+            ),
+            icon: const Icon(Icons.camera),
+            label: const Text('Take Picture'),
+            onPressed: _takepicture,
           ),
         ),
       ],
