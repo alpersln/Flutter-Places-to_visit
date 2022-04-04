@@ -31,14 +31,14 @@ class _ImageInputState extends State<ImageInput> {
 
     final appDirectory = await system_paths
         .getApplicationDocumentsDirectory(); // get the default directory of this
-    // print("${appDirectory}");                           //    a/b/c
+    // print("${appDirectory}");                            //    a/b/c
 
     final fileName = path.basename(imageFile.path);
     //  print("${fileName}");                               //    /d.jpg
 
     final savedImage = await File(imageFile.path).copy(
         "${appDirectory.path}/$fileName"); //get the filename stored in temporary storage along with path and copy to savedImage
-    print("${savedImage}"); //    a/b/c/d.jpg
+    // print("${savedImage}");                               //a/b/c/d.jpg
 
     widget.onSelectImage(savedImage);
   }

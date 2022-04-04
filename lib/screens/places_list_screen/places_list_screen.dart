@@ -21,25 +21,26 @@ class PlacesListScreen extends StatelessWidget {
               icon: const Icon(Icons.add))
         ],
       ),
-      body: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.all(12),
-              child: Consumer<UserPlaces>(
-                child: Center(child: Text("no places yet")),
-                builder: (ctx, userPlaces, ch) => userPlaces.items.length <= 0
-                    ? ch!
-                    : ListView.builder(
-                        itemCount: userPlaces.items.length,
-                        itemBuilder: (ctx, i) => ListTile(
-                              leading: CircleAvatar(
-                                  backgroundImage:
-                                      FileImage(userPlaces.items[i].image)),
-                              title: Text(userPlaces.items[i].title),
-                              onTap: () {
-                                //detail
-                              },
-                            )),
-              ))),
+      body: FutureBuilder(
+        future:
+            Provider.of<UserPlaces>(context, listen: false).fetchAndSetPlaces(),
+        builder: (ctx, snapshot) => Consumer<UserPlaces>(
+          child: const Center(child: Text("no places yet")),
+          builder: (ctx, userPlaces, ch) => userPlaces.items.length <= 0
+              ? ch!
+              : ListView.builder(
+                  itemCount: userPlaces.items.length,
+                  itemBuilder: (ctx, i) => ListTile(
+                        leading: CircleAvatar(
+                            backgroundImage:
+                                FileImage(userPlaces.items[i].image)),
+                        title: Text(userPlaces.items[i].title),
+                        onTap: () {
+                          //detail
+                        },
+                      )),
+        ),
+      ),
     );
   }
 }
