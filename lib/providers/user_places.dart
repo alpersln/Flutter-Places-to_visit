@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:places_to_visit/helpers/db_helper.dart';
 
 import '../models/place.dart';
 
@@ -21,5 +22,6 @@ class UserPlaces with ChangeNotifier {
     );
     _items.add(newPlace);
     notifyListeners();
+    DBHelper.insert('places', {'id':newPlace.id,'title':newPlace.title,'i',},)
   }
 }
