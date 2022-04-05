@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:places_to_visit/helpers/db_helper.dart';
+import 'package:places_to_visit/helpers/location_helper.dart';
 
 import '../models/place.dart';
 
@@ -12,11 +13,19 @@ class UserPlaces with ChangeNotifier {
     return [..._items];
   }
 
-  void addPlace(String title, File pickedImage) {
+  Future<void> addPlace(
+      String title, File pickedImage, PlaceLocation _pickedLocation) async {
+    final address = await LocationHelper.getPlaceAddress(
+        _pickedLocation.latitude, _pickedLocation.longitude);
+    final updateLocation = PlaceLocation(
+        latitude: _pickedLocation.latitude,
+        longitude: _pickedLocation.longitude,
+        address: address);
+    print("thisss sissssss addddddreesss ${address.toString()}");
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
-      location: PlaceLocation(latitude: 123.3, longitude: 23.3),
+      location: updateLocation,
       title: title,
     );
     _items.add(newPlace);
@@ -27,6 +36,9 @@ class UserPlaces with ChangeNotifier {
         'id': newPlace.id,
         'title': newPlace.title,
         'image': newPlace.image.path,
+        'loc_lat': newPlace.location!.latitude,
+        'loc_lng': newPlace.location!.longitude,
+        'address': newPlace.location!.address!,
       },
     );
   }
@@ -37,7 +49,11 @@ class UserPlaces with ChangeNotifier {
         .map((place) => Place(
               id: place["id"],
               title: place["title"],
-              location: const PlaceLocation(latitude: 123.3, longitude: 23.3),
+              location: PlaceLocation(
+                latitude: place['loc_lat'],
+                longitude: place['loc_lng'],
+                address: place['address'],
+              ),
               image: File(place['image']),
             ))
         .toList();
