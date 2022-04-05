@@ -16,8 +16,7 @@ class UserPlaces with ChangeNotifier {
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
-      location:
-          PlaceLocation("this is address", latitude: 123.3, longitude: 23.3),
+      location: PlaceLocation(latitude: 123.3, longitude: 23.3),
       title: title,
     );
     _items.add(newPlace);
@@ -38,8 +37,7 @@ class UserPlaces with ChangeNotifier {
         .map((place) => Place(
               id: place["id"],
               title: place["title"],
-              location: PlaceLocation("this is address",
-                  latitude: 123.3, longitude: 23.3),
+              location: const PlaceLocation(latitude: 123.3, longitude: 23.3),
               image: File(place['image']),
             ))
         .toList();

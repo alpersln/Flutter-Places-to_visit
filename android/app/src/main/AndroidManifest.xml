@@ -2,6 +2,7 @@
     package="com.example.places_to_visit">
    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="places_to_visit"
         android:name="${applicationName}"
