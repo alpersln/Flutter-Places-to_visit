@@ -9,7 +9,6 @@ class PlacesListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var placesItem = Provider.of<UserPlaces>(context).items;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Places List"),
@@ -37,7 +36,8 @@ class PlacesListScreen extends StatelessWidget {
                         title: Text(userPlaces.items[i].title),
                         subtitle: Text(userPlaces.items[i].location!.address!),
                         onTap: () {
-                          //detail
+                          Navigator.of(context).pushNamed('/placeDetailSc',
+                              arguments: userPlaces.items[i].id);
                         },
                       )),
         ),

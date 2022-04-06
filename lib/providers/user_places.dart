@@ -21,7 +21,7 @@ class UserPlaces with ChangeNotifier {
         latitude: _pickedLocation.latitude,
         longitude: _pickedLocation.longitude,
         address: address);
-    print("thisss sissssss addddddreesss ${address.toString()}");
+
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
@@ -57,6 +57,18 @@ class UserPlaces with ChangeNotifier {
               image: File(place['image']),
             ))
         .toList();
+    notifyListeners();
+  }
+
+  Place findById(String id) {
+    return _items.firstWhere((place) => place.id == id);
+  }
+
+  Future<void> showPreview(double latitude, double longitude) async {
+    final previewUrl = LocationHelper.generateLocationPreviewImage(
+      latitude: latitude,
+      longitude: longitude,
+    );
     notifyListeners();
   }
 }
