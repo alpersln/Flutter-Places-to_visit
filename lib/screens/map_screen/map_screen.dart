@@ -3,6 +3,8 @@ import 'package:places_to_visit/models/place.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../core/widgets/custom_snackbar.dart';
+
 class MapScreen extends StatefulWidget {
   final PlaceLocation initialLocation;
   final bool isSelecting;
@@ -67,7 +69,7 @@ class _MapScreenState extends State<MapScreen> {
             child: ElevatedButton(
                 onPressed: () {
                   _pickedLocation == null
-                      ? null
+                      ? GlobalSnackBar.show(context, "Please select location")
                       : Navigator.of(context).pop(_pickedLocation);
                 },
                 child: Text("Save Location")),

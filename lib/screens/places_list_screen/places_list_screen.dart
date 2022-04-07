@@ -23,24 +23,31 @@ class PlacesListScreen extends StatelessWidget {
       body: FutureBuilder(
         future:
             Provider.of<UserPlaces>(context, listen: false).fetchAndSetPlaces(),
-        builder: (ctx, snapshot) => Consumer<UserPlaces>(
-          child: const Center(child: Text("no places yet")),
-          builder: (ctx, userPlaces, ch) => userPlaces.items.length <= 0
-              ? ch!
-              : ListView.builder(
-                  itemCount: userPlaces.items.length,
-                  itemBuilder: (ctx, i) => ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage:
-                                FileImage(userPlaces.items[i].image)),
-                        title: Text(userPlaces.items[i].title),
-                        subtitle: Text(userPlaces.items[i].location!.address!),
-                        onTap: () {
-                          Navigator.of(context).pushNamed('/placeDetailSc',
-                              arguments: userPlaces.items[i].id);
-                        },
-                      )),
-        ),
+        builder: (ctx, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Consumer<UserPlaces>(
+                child: const Center(child: Text("no places yet")),
+                builder: (ctx, userPlaces, ch) => userPlaces.items.length <= 0
+                    ? ch!
+                    : ListView.builder(
+                        itemCount: userPlaces.items.length,
+                        itemBuilder: (ctx, i) => ListTile(
+                              leading: CircleAvatar(
+                                  backgroundImage:
+                                      FileImage(userPlaces.items[i].image)),
+                              title: Text(userPlaces.items[i].title),
+                              subtitle:
+                                  Text(userPlaces.items[i].location!.address!),
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    '/placeDetailSc',
+                                    arguments: userPlaces.items[i].id);
+                              },
+                            )),
+              ),
       ),
     );
   }

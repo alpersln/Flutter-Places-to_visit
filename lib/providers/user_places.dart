@@ -63,12 +63,4 @@ class UserPlaces with ChangeNotifier {
   Place findById(String id) {
     return _items.firstWhere((place) => place.id == id);
   }
-
-  Future<void> showPreview(double latitude, double longitude) async {
-    final previewUrl = LocationHelper.generateLocationPreviewImage(
-      latitude: latitude,
-      longitude: longitude,
-    );
-    notifyListeners();
-  }
 }

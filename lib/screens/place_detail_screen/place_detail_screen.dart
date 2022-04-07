@@ -33,17 +33,29 @@ class PlacesDetailScreen extends StatelessWidget {
           ),
           Text(selectedPlace.location!.address ?? "address"),
           Container(
-            height: 250,
-            width: 250,
-            child: Image.network(
-              LocationHelper.generateLocationPreviewImage(
-                latitude: selectedPlace.location!.latitude,
-                longitude: selectedPlace.location!.longitude,
-              ),
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
-          )
+              height: 250,
+              width: 250,
+              child: Stack(
+                children: [
+                  Image.network(
+                    LocationHelper.generateLocationPreviewImage(
+                      latitude: selectedPlace.location!.latitude,
+                      longitude: selectedPlace.location!.longitude,
+                    ),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (context) => MapScreen(
+                                  initialLocation: selectedPlace.location!,
+                                )));
+                      },
+                      child: Text("Open Map"))
+                ],
+              ))
         ],
       ),
     );

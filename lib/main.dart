@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: UserPlaces(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.indigo,

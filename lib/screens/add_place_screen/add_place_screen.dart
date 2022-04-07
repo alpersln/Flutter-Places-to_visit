@@ -6,7 +6,7 @@ import 'package:places_to_visit/models/place.dart';
 import 'package:places_to_visit/providers/user_places.dart';
 import 'package:places_to_visit/screens/add_place_screen/widgets/location_input.dart';
 import 'package:provider/provider.dart';
-
+import '../../core/widgets/custom_snackbar.dart';
 import 'widgets/image_input.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     _pickedLocation = PlaceLocation(latitude: lat, longitude: lng);
   }
 
-  void _savePlace() {
+  _savePlace() {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       return print("they are nulll");
     } else {
@@ -79,7 +79,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             style: TextButton.styleFrom(
               primary: Theme.of(context).primaryColor,
             ),
-            onPressed: _savePlace,
+            onPressed: () {
+              _savePlace();
+              GlobalSnackBar.show(context, "Place Added");
+            },
           ),
         ],
       ),
