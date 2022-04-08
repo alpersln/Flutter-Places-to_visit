@@ -18,17 +18,6 @@ class PlacesDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FutureBuilder(
-                future: LocationHelper.selectedLocationAddressRequest(
-                    selectedPlace.location!.latitude,
-                    selectedPlace.location!.longitude),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(snapshot.data.toString());
-                  } else {
-                    return Text(snapshot.error.toString());
-                  }
-                }),
             Container(
               padding: const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.3,

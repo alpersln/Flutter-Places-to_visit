@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:places_to_visit/providers/theme_provider.dart';
+
 import 'package:places_to_visit/providers/user_places.dart';
 import 'package:places_to_visit/screens/add_place_screen/add_place_screen.dart';
 import 'package:places_to_visit/screens/place_detail_screen/place_detail_screen.dart';
 import 'package:places_to_visit/screens/places_list_screen/places_list_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'core/theme/app_theme.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    child: MyApp(),
+    create: (context) => ThemeProvider(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,11 +27,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          colorScheme:
-              ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
-        ),
+        theme: ThemeManager.createTheme(AppThemeLight()),
+        darkTheme: ThemeManager.createTheme(AppThemeDark()),
+        themeMode: Provider.of<ThemeProvider>(context, listen: false).themeMode,
         home: const PlacesListScreen(),
         routes: {
           '/addPlaceSc': (ctx) => const AddPlaceScreen(),

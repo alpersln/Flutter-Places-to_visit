@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:places_to_visit/helpers/db_helper.dart';
 import 'package:places_to_visit/helpers/location_helper.dart';
 
@@ -64,3 +65,7 @@ class UserPlaces with ChangeNotifier {
     return _items.firstWhere((place) => place.id == id);
   }
 }
+
+//----
+
+
