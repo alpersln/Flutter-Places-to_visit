@@ -28,11 +28,7 @@ class _LocationInputState extends State<LocationInput> {
 
   Future<void> _getCurrentLocation() async {
     final locationData = await Location().getLocation();
-/*     final staticMapImageUrl = LocationHelper.generateLocationPreviewImage(
-        latitude: locationData.latitude!, longitude: locationData.longitude!); */
-/*     setState(() {
-      _previewImageUrl = staticMapImageUrl;
-    }); */
+
     _showPreview(locationData.latitude!, locationData.longitude!);
     widget.onSelectLocation(locationData.latitude, locationData.longitude);
   }
@@ -55,9 +51,8 @@ class _LocationInputState extends State<LocationInput> {
   } */
 
   LatLng? loc;
-
   Future<void> _selectOnMap() async {
-    final locationData = await Location().getLocation();
+    //   final locationData = await Location().getLocation();
     final selectedLocation =
         await Navigator.of(context).push<LatLng>(MaterialPageRoute(
       fullscreenDialog: true,

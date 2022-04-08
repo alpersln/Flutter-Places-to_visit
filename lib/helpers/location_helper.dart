@@ -17,4 +17,12 @@ class LocationHelper {
     final response = await http.get(url);
     return json.decode(response.body)['features'][0]['place_name'];
   }
+
+  static Future<String> selectedLocationAddressRequest(
+      double lat, double lng) async {
+    final url = Uri.parse(
+        'http://api.positionstack.com/v1/reverse?access_key=c4b513670b1fd6ab6b73d4cf522837ca&query=$lat,$lng');
+    final response = await http.get(url);
+    return json.decode(response.body)['data'][0]['label'];
+  }
 }

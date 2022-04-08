@@ -15,7 +15,7 @@ class UserPlaces with ChangeNotifier {
 
   Future<void> addPlace(
       String title, File pickedImage, PlaceLocation _pickedLocation) async {
-    final address = await LocationHelper.getPlaceAddress(
+    final address = await LocationHelper.selectedLocationAddressRequest(
         _pickedLocation.latitude, _pickedLocation.longitude);
     final updateLocation = PlaceLocation(
         latitude: _pickedLocation.latitude,
