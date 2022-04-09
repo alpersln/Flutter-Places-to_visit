@@ -11,7 +11,7 @@ import 'core/theme/app_theme.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    child: MyApp(),
+    child: const MyApp(),
     create: (context) => ThemeProvider(),
   ));
 }
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeManager.createTheme(AppThemeLight()),
         darkTheme: ThemeManager.createTheme(AppThemeDark()),
-        themeMode: Provider.of<ThemeProvider>(context, listen: false).themeMode,
+        themeMode: Provider.of<ThemeProvider>(context).themeMode,
         home: const PlacesListScreen(),
         routes: {
           '/addPlaceSc': (ctx) => const AddPlaceScreen(),

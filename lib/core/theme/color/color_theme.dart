@@ -31,6 +31,7 @@ abstract class IColors {
   Brightness? brightness;
   Color? buttonNormalColor;
   Color? buttonGoogleColor;
+  Color? textButtonColor;
 
   ColorScheme? colorScheme;
 }

@@ -76,9 +76,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           TextButton.icon(
             icon: const Icon(Icons.add),
             label: const Text('Add Place'),
-            style: TextButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-            ),
             onPressed: () {
               _savePlace();
               GlobalSnackBar.show(context, "Place Added");

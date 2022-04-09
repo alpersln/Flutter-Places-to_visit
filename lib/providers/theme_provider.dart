@@ -11,13 +11,3 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-class MyThemes {
-  static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black45,
-  );
-
-  static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-  );
-}

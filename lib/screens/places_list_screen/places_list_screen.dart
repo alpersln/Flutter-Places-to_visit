@@ -16,7 +16,9 @@ class PlacesListScreen extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Places List"),
+        title: const Text(
+          "Places List",
+        ),
         actions: [
           IconButton(
               onPressed: () {

@@ -100,16 +100,10 @@ class _LocationInputState extends State<LocationInput> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
-                style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColor,
-                ),
                 onPressed: _getCurrentLocation,
                 icon: Icon(Icons.location_on_outlined),
                 label: Text("Current Location")),
             TextButton.icon(
-                style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColor,
-                ),
                 onPressed: _selectOnMap,
                 icon: Icon(Icons.map_outlined),
                 label: Text("Select on Map")),

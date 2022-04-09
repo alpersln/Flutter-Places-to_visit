@@ -23,7 +23,16 @@ abstract class ThemeManager {
           labelColor: theme.colors.tabbarSelectedColor,
           unselectedLabelColor: theme.colors.tabbarNormalColor,
         ),
-        appBarTheme: AppBarTheme(backgroundColor: theme.colors.appBarColor),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            // This is a custom color variable
+            primary: theme.colors.textButtonColor,
+          ),
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: theme.colors.appBarColor,
+          elevation: 0,
+        ),
         scaffoldBackgroundColor: theme.colors.scaffoldBackgroundColor,
         colorScheme: theme.colors.colorScheme,
       );
@@ -33,7 +42,7 @@ class AppThemeDark extends ITheme {
   @override
   late final ITextTheme textTheme;
   AppThemeDark() {
-    textTheme = TextThemeDark(colors.colors.mediumGrey);
+    textTheme = TextThemeDark(colors.colors.white);
   }
 
   @override
@@ -44,7 +53,7 @@ class AppThemeLight extends ITheme {
   @override
   late final ITextTheme textTheme;
   AppThemeLight() {
-    textTheme = TextThemeLight(colors.colors.mediumGrey);
+    textTheme = TextThemeLight(colors.colors.black);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places_to_visit/core/theme/color/color_theme.dart';
 import 'package:places_to_visit/models/place.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -59,7 +60,10 @@ class _MapScreenState extends State<MapScreen> {
                       point: _pickedLocation ??
                           LatLng(widget.initialLocation.latitude,
                               widget.initialLocation.longitude),
-                      builder: (ctx) => Icon(Icons.location_pin)),
+                      builder: (ctx) => Icon(
+                            Icons.location_pin,
+                            color: AppColors().red,
+                          )),
                 ],
               ),
             ],

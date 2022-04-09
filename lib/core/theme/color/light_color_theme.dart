@@ -25,6 +25,15 @@ class LightColors implements IColors {
   Color? tabbarSelectedColor;
 
   @override
+  Color? buttonGoogleColor;
+
+  @override
+  Color? buttonNormalColor;
+
+  @override
+  Color? textButtonColor;
+
+  @override
   final AppColors colors = AppColors();
 
   LightColors() {
@@ -32,20 +41,14 @@ class LightColors implements IColors {
     scaffoldBackgroundColor = colors.white;
     tabBarColor = colors.red;
     tabbarNormalColor = colors.darkerGrey;
+    textButtonColor = colors.nightblue;
     tabbarSelectedColor = colors.red;
-
-    buttonNormalColor = colors.red;
+    buttonNormalColor = colors.green;
     buttonGoogleColor = colors.nightblue;
     colorScheme = const ColorScheme.light().copyWith(
-      onPrimary: colors.red, //xx Her ikisinde ortaktır
+      onPrimary: colors.red,
       onSecondary: colors.white,
       onSurface: colors.mediumGreyBold,
     );
   }
-
-  @override
-  Color? buttonGoogleColor;
-
-  @override
-  Color? buttonNormalColor;
 }

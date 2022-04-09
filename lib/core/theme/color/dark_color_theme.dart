@@ -31,6 +31,9 @@ class DarkColors implements IColors {
   Color? buttonNormalColor;
 
   @override
+  Color? textButtonColor;
+
+  @override
   final AppColors colors = AppColors();
 
   DarkColors() {
@@ -39,9 +42,13 @@ class DarkColors implements IColors {
     tabBarColor = colors.red;
     tabbarNormalColor = colors.lighterGrey;
     tabbarSelectedColor = colors.red;
-    buttonNormalColor = colors.red;
-    buttonGoogleColor = colors.nightblue;
-    colorScheme = const ColorScheme.dark()
-        .copyWith(onPrimary: colors.red, onSecondary: colors.darkGrey);
+    buttonNormalColor = colors.white;
+    buttonGoogleColor = colors.white;
+    textButtonColor = colors.red;
+    colorScheme = const ColorScheme.dark().copyWith(
+      onPrimary: colors.white,
+      onSecondary: colors.darkGrey,
+      onSurface: colors.mediumGreyBold,
+    );
   }
 }
