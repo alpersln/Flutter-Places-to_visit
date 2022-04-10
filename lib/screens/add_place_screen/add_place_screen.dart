@@ -30,12 +30,16 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   }
 
   _savePlace() {
-    if (_titleController.text.isEmpty || _pickedImage == null) {
-      return print("they are nulll");
+    if (_titleController.text.isEmpty ||
+        _pickedImage == null ||
+        _pickedLocation == null) {
+      print("fields are null");
+      GlobalSnackBar.show(context, "Please fill all the fields");
     } else {
       Provider.of<UserPlaces>(context, listen: false)
           .addPlace(_titleController.text, _pickedImage!, _pickedLocation!);
       Navigator.of(context).pop();
+      GlobalSnackBar.show(context, "Place Added");
     }
   }
 
@@ -55,7 +59,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 child: Column(
                   children: <Widget>[
                     TextField(
-                      decoration: const InputDecoration(labelText: 'Title'),
+                      decoration: const InputDecoration(
+                        labelText: 'Title',
+                      ),
                       controller: _titleController,
                     ),
                     const SizedBox(
@@ -78,7 +84,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             label: const Text('Add Place'),
             onPressed: () {
               _savePlace();
-              GlobalSnackBar.show(context, "Place Added");
             },
           ),
         ],

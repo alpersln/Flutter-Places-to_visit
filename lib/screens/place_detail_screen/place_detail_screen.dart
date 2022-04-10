@@ -15,7 +15,9 @@ class PlacesDetailScreen extends StatelessWidget {
     final selectedPlace =
         Provider.of<UserPlaces>(context, listen: false).findById(id.toString());
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(selectedPlace.title),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -45,10 +47,13 @@ class PlacesDetailScreen extends StatelessWidget {
                 height: 12,
               ),
               Text(
-                  "Address: ${selectedPlace.location!.address ?? "Unidentified Location"}"),
-              Container(
+                "Address: ${selectedPlace.location!.address ?? "Unidentified Location"}",
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              SizedBox(
                 width: double.infinity,
                 child: Stack(
+                  alignment: Alignment.bottomRight,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
@@ -62,25 +67,33 @@ class PlacesDetailScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) => MapScreen(
-                                    isSelecting: false,
-                                    initialLocation: selectedPlace.location!,
-                                  )));
-                        },
-                        child: Text(
-                          "See On Map",
-                          style: TextStyle(color: AppColors().white),
-                        ))
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                fullscreenDialog: true,
+                                builder: (context) => MapScreen(
+                                      isSelecting: false,
+                                      initialLocation: selectedPlace.location!,
+                                    )));
+                          },
+                          child: Text(
+                            "See On Map",
+                            style: TextStyle(color: AppColors().white),
+                          )),
+                    )
                   ],
                 ),
               ),
-              Text("Latitude: ${selectedPlace.location!.latitude.toString()} "),
               Text(
-                  "Longitude: ${selectedPlace.location!.longitude.toString()} "),
+                "Latitude: ${selectedPlace.location!.latitude.toString()} ",
+                style: Theme.of(context).textTheme.caption,
+              ),
+              Text(
+                "Longitude: ${selectedPlace.location!.longitude.toString()} ",
+                style: Theme.of(context).textTheme.caption,
+              ),
             ],
           ),
         ),

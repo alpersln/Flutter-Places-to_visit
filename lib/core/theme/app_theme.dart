@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:places_to_visit/core/theme/text/dark_text_theme.dart';
 import 'package:places_to_visit/core/theme/text/light_text_theme.dart';
@@ -18,6 +20,10 @@ abstract class ThemeManager {
         textTheme: theme.textTheme.data,
         cardColor: theme.colors.colorScheme?.onSecondary,
         bottomAppBarColor: theme.colors.scaffoldBackgroundColor,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: theme.colors.textButtonColor,
+          selectionColor: theme.colors.textButtonColor,
+        ),
         tabBarTheme: TabBarTheme(
           indicator: const BoxDecoration(),
           labelColor: theme.colors.tabbarSelectedColor,

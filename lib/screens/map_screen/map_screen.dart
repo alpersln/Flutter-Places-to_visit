@@ -76,7 +76,10 @@ class _MapScreenState extends State<MapScreen> {
                       ? GlobalSnackBar.show(context, "Please select location")
                       : Navigator.of(context).pop(_pickedLocation);
                 },
-                child: Text("Save Location")),
+                child: Text(
+                  "Save Location",
+                  style: TextStyle(color: AppColors().white),
+                )),
           ),
         ],
       ),

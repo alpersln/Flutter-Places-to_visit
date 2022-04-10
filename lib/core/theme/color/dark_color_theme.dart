@@ -43,6 +43,7 @@ class DarkColors implements IColors {
     tabbarNormalColor = colors.lighterGrey;
     tabbarSelectedColor = colors.red;
     buttonNormalColor = colors.white;
+
     buttonGoogleColor = colors.white;
     textButtonColor = colors.red;
     colorScheme = const ColorScheme.dark().copyWith(
