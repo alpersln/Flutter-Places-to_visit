@@ -1,9 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
+var asd = DotEnv().env['MAPBOX_API_KEY'];
+
+var dds = DotEnv().env['ADDRESS_API_KEY'];
 const MAPBOX_API_KEY =
-    'pk.eyJ1IjoiZGlzdGlycSIsImEiOiJjbDFrenJjMDEwMDJtM2lwbWlqdTgzeTJ6In0.WjEAZ0MsWr9bPUDZ_oaR_A';
+    "pk.eyJ1IjoiZGlzdGlycSIsImEiOiJjbDFrenJjMDEwMDJtM2lwbWlqdTgzeTJ6In0.WjEAZ0MsWr9bPUDZ_oaR_A";
+
+const ADDRESS_API_KEY = "c4b513670b1fd6ab6b73d4cf522837ca";
 
 class LocationHelper {
   static String generateLocationPreviewImage(
@@ -21,7 +27,7 @@ class LocationHelper {
   static Future<String> selectedLocationAddressRequest(
       double lat, double lng) async {
     final url = Uri.parse(
-        'http://api.positionstack.com/v1/reverse?access_key=c4b513670b1fd6ab6b73d4cf522837ca&query=$lat,$lng');
+        'http://api.positionstack.com/v1/reverse?access_key=$ADDRESS_API_KEY&query=$lat,$lng');
     final response = await http.get(url);
     return json.decode(response.body)['data'][0]['label'];
   }

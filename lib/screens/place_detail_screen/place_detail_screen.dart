@@ -12,6 +12,7 @@ class PlacesDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context)!.settings.arguments;
+    bool isLoading;
     final selectedPlace =
         Provider.of<UserPlaces>(context, listen: false).findById(id.toString());
     return Scaffold(
@@ -44,11 +45,14 @@ class PlacesDetailScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
               SizedBox(
-                height: 12,
+                height: 8,
               ),
               Text(
                 "Address: ${selectedPlace.location!.address ?? "Unidentified Location"}",
                 style: Theme.of(context).textTheme.headline1,
+              ),
+              SizedBox(
+                height: 4,
               ),
               SizedBox(
                 width: double.infinity,
@@ -62,8 +66,6 @@ class PlacesDetailScreen extends StatelessWidget {
                           latitude: selectedPlace.location!.latitude,
                           longitude: selectedPlace.location!.longitude,
                         ),
-
-                        // "sdsd"
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -85,6 +87,9 @@ class PlacesDetailScreen extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 4,
               ),
               Text(
                 "Latitude: ${selectedPlace.location!.latitude.toString()} ",

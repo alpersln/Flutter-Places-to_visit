@@ -60,7 +60,8 @@ class _LocationInputState extends State<LocationInput> {
         isSelecting: true,
         initialLocation: loc != null
             ? PlaceLocation(latitude: loc!.latitude, longitude: loc!.longitude)
-            : const PlaceLocation(latitude: 41.00, longitude: 28.97),
+            : const PlaceLocation(
+                latitude: 38.3771515281, longitude: 27.124763293),
       ),
     ));
 
